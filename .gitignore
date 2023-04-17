@@ -1,0 +1,4 @@
+db/abc_so_v2.sql
+dist/php/config/conndb.php
+dist/php/ProcedimientosTrk.txt
+*.xlsx
