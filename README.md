@@ -138,11 +138,29 @@ Funcionalidades de la ágina principal de la herramienta.
 ### PHP
 
 ![Estructura](docs/back_php.PNG)
-![Estructura](docs/back_php.PNG)
 
 #### Controller.php
+Este controlador de PHP es utilizado para realizar diversas tareas en una aplicación web. Al principio del archivo se inicia la sesión y se requieren varios archivos y clases necesarios para el funcionamiento del sistema, como "seguridad.php", "Excelinsert", "definidas.php", "conndb.php", "class_MySQL.php", "class_MsSQL.php", "festivos.php", "func_filtro.php", "func_filtro_pies.php", "b_estado_procesos.php", "d_kpis.php", "d_kpis_conf.php", "e_historico.php", "f_mails.php", "g_export_data.php", "func_login.php" y "func_cron.php".
+
+A continuación, se establece una conexión con la base de datos MySQL y se comprueba si se han pasado argumentos en línea de comandos. Si es así, se procesan los argumentos y se ejecuta la tarea correspondiente. Las tareas disponibles son: "CopyDataDeTracking", "CronValidarKPI", "CopyDataDeTrackingSinHora", "CopyHistorico", "CalcularDatosAdicionales", "InsertarHistorico" y "CalcularDatos". Cada una de ellas realiza una tarea específica en el sistema.
+
+Si no se han pasado argumentos en línea de comandos, se comprueba si el usuario ha iniciado sesión en la aplicación web. Si no ha iniciado sesión, se comprueba si se ha enviado algún formulario de inicio de sesión. Si se ha enviado el formulario, se procesa la solicitud y se inicia la sesión del usuario. Si el usuario ya ha iniciado sesión, se comprueba si se ha enviado algún otro formulario y se procesa la solicitud correspondiente.
+
+En resumen, este controlador de PHP es esencial para el correcto funcionamiento de la aplicación web y se encarga de procesar las tareas y solicitudes enviadas por el usuario, así como de mantener la sesión del usuario en la aplicación.
 
 #### dist\php\func_cron
+
+La función "CopyDataDeTracking" actualiza una tabla en MySQL llamada "abc_cron_control.tbl_cron" con un array que contiene un ID de proceso, un estado y un tiempo. Luego, vacía una tabla llamada "imseguimientooperativo" en la misma base de datos y procede a copiar datos de otra tabla en una base de datos MSSQL, "BotAbc.dbo.IMSeguimientoOperativo". Esta función recorre los datos de la tabla MSSQL, los procesa y los inserta en la tabla "imseguimientooperativo" de la base de datos MySQL. Además, realiza una serie de acciones adicionales, como calcular datos, validar y actualizar información en la base de datos.
+
+Por otro lado, la función "CopyHistorico" también copia datos de una tabla de una base de datos MSSQL a una tabla llamada "imseguimientooperativo_historico" en la base de datos MySQL. Esta función recorre los datos de la tabla MSSQL, los inserta en la tabla "imseguimientooperativo_historico" de la base de datos MySQL y muestra información de progreso en la consola.
+
+Ambas funciones utilizan métodos y objetos de conexión a las bases de datos, así como la clase "FunctionsMySQL", que contiene funciones genéricas para realizar consultas y operaciones en la base de datos MySQL.
+
+
 #### dist\php\func_dashboard
+
+En este direcotrio encuentra los contrapartes en PHP de los JS del directorio `\dist\js\func_dashboard`. Las funciones descritas en ese Script apuntan al controlador, y este a su vez, a los PHP que se encuentran aquí.
+Para mpas detalle de en qué consiste cada modulo, puede consultar en la parte del JS.
+
 #### dist\php\func_filtro
 #### dist\php\func_login
