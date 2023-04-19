@@ -71,10 +71,78 @@ Contiene las funciones Front útiles para la visualización detallada de las ope
 
 
 ##### `d_kpis_conf.js`
+
+Este código es parte de un proyecto que utiliza el lenguaje de programación JavaScript y la biblioteca jQuery. El objetivo del código es crear una interfaz de usuario para la gestión de indicadores clave de rendimiento (KPIs) en un sistema web.
+
+El código se utiliza para manejar la lógica de eventos en la interfaz de usuario de la gestión de KPIs. Para ello, se definen diversas funciones que son llamadas cuando se producen eventos como hacer clic en un botón, cambiar una selección, etc.
+
+El código hace uso de la biblioteca jQuery para acceder al DOM y manipularlo. Es necesario tener esta biblioteca importada en el proyecto antes de utilizar el código.
+
+Para utilizar el código, se debe llamar a la función `$('.BtnKpi').on("click", function () {...})` cuando se hace clic en un botón con la clase BtnKpi. Esta función se encarga de realizar una serie de acciones, como asignar un valor a la variable idKPI, verificar si este valor es igual a "AgregarKpi" y llamar a la función OpenModalKpis().
+
+La función OpenModalKpis() se encarga de realizar varias tareas, como llamar a las funciones SelectorClientes() y SelectorFechasKpis(), agregar y quitar clases a varios elementos del DOM y abrir un modal de Bootstrap. Además, verifica si la variable TypePost tiene un valor igual a "EditarKpi" y, en ese caso, llama a la función GetDataKpi().
+
+Las funciones SelectorClientes(), GetDataKpi() y SelectorFechasKpis() son funciones auxiliares que realizan tareas específicas para la gestión de KPIs, como obtener datos de un servidor mediante una petición AJAX y actualizar elementos del DOM con estos datos.
+
+La función `$('#SelectorClientes').on("change", function () {...})` se encarga de cambiar el contenido del DOM cuando cambia la selección de un elemento con el id SelectorClientes. Para ello, llama a la función `SelectorInstruccion()`.
+
+La función SelectorInstruccion() es otra función auxiliar que obtiene datos de un servidor mediante una petición AJAX y actualiza un elemento del DOM con estos datos.
+
+##### `d_kpis.js`
+
+Este es un archivo JavaScript que contiene una función para generar indicadores clave de rendimiento (KPIs) generales. Esta función utiliza jQuery para realizar una solicitud AJAX y recibir los datos necesarios para generar los KPIs. Además, el archivo contiene algunas funciones adicionales para manejar eventos de clic y mostrar detalles específicos de los KPIs.
+
+Para utilizar la función KpisGenerales(), se debe llamar a la función desde algún evento de clic en la página web. La función realiza una solicitud AJAX al servidor para obtener los datos necesarios para generar los KPIs y mostrarlos en la página web.
+
+Las funciones adicionales, como OpenKPIDetails() y las que se encargan de manejar los eventos de clic en los botones, permiten interactuar con los KPIs generados y ver detalles específicos de los mismos.
+
 ##### `e_historico.js`
+
+La función HistoricoChart() es una función en JavaScript que utiliza la biblioteca ECharts para representar gráficamente los datos de los procesos aduaneros.
+
+La función HistoricoChart() hace una petición AJAX al archivo controller.php utilizando la función $.ajax() de jQuery. Los datos de la petición se almacenan en la variable DatosPeticion, que contiene el método "HistoricoChart".
+
+Una vez que se recibe la respuesta de la petición AJAX, se muestran los datos en la página utilizando jQuery y se crea un gráfico con ECharts. La configuración del gráfico se almacena en la variable option.
+
+La función Graficahistorico.setOption(option) se utiliza para mostrar el gráfico en la página.
+
+
 ##### `f_mails.js`
+El código proporcionado contiene funciones que permiten realizar diferentes tareas relacionadas con el envío de notificaciones, la creación de mensajes, entre otros.
+- La función `$('#BtnSelectAllDo')` permite seleccionar todos los elementos de una lista de tareas. La función HabilitarSelectDOMail() se encarga de obtener la información de una tarea y mostrarla en un mensaje, cuando se hace clic en un botón.
+La función `$('#BtnCrearCorreo')` muestra un formulario modal para crear un nuevo mensaje y, posteriormente, inserta el último mensaje en el editor de texto CKEditor.
+La función `$('#ClearTextArea')` limpia el editor de texto CKEditor.
+La función `$('#BtnSendNotifysDO')` se encarga de enviar notificaciones por correo electrónico a diferentes usuarios, seleccionados previamente, con un asunto y un mensaje especificados.
+La función `$('#BtnCrearCierre')` muestra un formulario modal para crear un nuevo cierre diario.
+La función `$('#BtnGeneraCierreDiario')` se encarga de generar un cierre diario, con la información especificada en el formulario, y enviarlo por correo electrónico a los usuarios correspondientes.
+
 
 - `\dist\js\func_filtro`
+
+Incluy funcionalidades generales para la busqueda y generación de graficos, a partir de filtros que el usuario defina.
+
 - `\dist\js\func_login`
+
+Realiza las peticioneslal back para verificar la autenticación que se intenta realizar.
+
 - `\dist\js\func_session`
+
+Este código es un script en JavaScript que monitorea la actividad del usuario en una página web. Si el usuario no ha interactuado con la página web durante un período de tiempo especificado, se muestra una alerta indicando que su sesión ha caducado y se le redirige a la página de inicio de sesión.
+
 - `\dist\js\main`
+
+Funcionalidades de la ágina principal de la herramienta.
+
+## Back-end.
+
+### PHP
+
+![Estructura](docs/back_php.PNG)
+![Estructura](docs/back_php.PNG)
+
+#### Controller.php
+
+#### dist\php\func_cron
+#### dist\php\func_dashboard
+#### dist\php\func_filtro
+#### dist\php\func_login
