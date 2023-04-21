@@ -1,6 +1,7 @@
 # Abc Sonar
 Sistema de Gestion Sonar ABC repecev, para el control interno operaivo, visualización de KPIS con alcance a toda la operación Repecev en la linea de importaciones. Cuenta con funcionalidad de modificar datos. El aplicativo se alimenta por procesos automaticos controlados por medio de Cron Jobs y administrados por MySql y con Task Scheduler. La información que se utiliza como insumo a paritr de este proceso proviene de RPC Tracking
 
+![Estructura](docs/sonardiag.PNG)
 
 # Estructura
 
