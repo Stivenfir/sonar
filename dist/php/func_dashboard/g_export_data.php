@@ -199,7 +199,7 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AL' . $Fila, $row['ObsrvCliente']);
         $sheet->getActiveSheet()->setCellValue('AM' . $Fila, $row['DescripcionMercancia']);
         $sheet->getActiveSheet()->setCellValue('AN' . $Fila, TraductorTerminalDeposito($connMysql, $row['Deposito']));
-        $sheet->getActiveSheet()->setCellValue('AO' . $Fila, TraductorTerminalDeposito($connMysql, $row['DepositoZonaFranca']));
+        $sheet->getActiveSheet()->setCellValue('AO' . $Fila, TraductorTerminalDeposito($connMysql, $row['DepositoZonaFranca'], 'ZF'));
         $sheet->getActiveSheet()->setCellValue('AP' . $Fila, $row['ParcialNumero']);
         $sheet->getActiveSheet()->setCellValue('AQ' . $Fila, $row['OrdenNacnaviera']);
         $sheet->getActiveSheet()->setCellValue('AR' . $Fila, $row['OrdenNacbuque']);
