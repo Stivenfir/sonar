@@ -204,6 +204,7 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AQ' . $Fila, $row['OrdenNacnaviera']);
         $sheet->getActiveSheet()->setCellValue('AR' . $Fila, $row['OrdenNacbuque']);
         $sheet->getActiveSheet()->setCellValue('AS' . $Fila, $row['OrdenNacmblLiberado']);
+        $sheet->getActiveSheet()->setCellValue('AT' . $Fila, $row['Contenedores']);
     }
 
     $dataArray = array();
