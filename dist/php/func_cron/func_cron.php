@@ -66,9 +66,8 @@ function InsertTRKSeguimiento()   {
     $stmt = $connMysql->prepare($SQL);
     $stmt->execute();
     $result = $stmt->fetchAll();
-
-        $InsertSQL = "
-        insert into  BotAbc.dbo.v_seguimientooperativo (
+    while ($ArraySQL = $result) {
+        $InsertSQL = "INSERT INTO  BotAbc.dbo.v_seguimientooperativo (
           Cliente,
           [DO Repecev],
           Instruccion,
@@ -116,15 +115,15 @@ function InsertTRKSeguimiento()   {
             Buque,
             [BL Liberado],
             Contenedores,
-            nombreEstado
-          ) (".$result.")";
-        $stmt = sqlsrv_prepare($connMssql, $InsertSQL, );
+            nombreEstado,
+          )VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = sqlsrv_prepare($connMssql, $InsertSQL,$InsertSQL, $ArraySQL );
         if (sqlsrv_execute($stmt) === false) {
 
             die(print_r(sqlsrv_errors(), true));
         }
     
-
+    }
 
 }
 function vaciarTableTRK() {
