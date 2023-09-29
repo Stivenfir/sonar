@@ -56,6 +56,84 @@ function CopyDataDeTracking($IdProceso)
     return 1;
 }
 
+function InsertTRKSeguimiento()   {
+    vaciarTableTRK();
+    
+    $FunctionsMySQL = new FunctionsMySQL();
+    $connMysql = connMysql();
+    $connMssql = connMSSQL(entorno);
+    $SQL = "SELECT * FROM v_seguimientooperativo";
+    $stmt = $connMysql->prepare($SQL);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+        $InsertSQL = "
+        insert into  BotAbc.dbo.v_seguimientooperativo (
+          Cliente,
+          [DO Repecev],
+          Instruccion,
+          [Estado Seguimiento],
+          Ejecutivo,
+          JefeCuenta,
+          Aduana,
+          ModoTransporte,
+          [DO Cliente],
+          [Documento de Transporte],
+          [Fecha Creacion DO],
+          [Fecha ETA],
+          [Fecha Manifiesto],
+          NumeroManifiesto,
+          [Fecha Consulta Inventario],
+          [Fecha Nacionalizacion],
+          [Tipo Nacionalizacion],
+          [No. Nacionalizacion],
+          [Fecha FFMM ZF],
+          [Fecha Solicitud Reconocimiento],
+          [Fecha Reconocimiento],
+          [Fecha ReciboDocumentos DO],
+          [Fecha Recibo Documentos Nac],
+          [Fecha Visado],
+          [Fecha Aceptacion],
+          [Fecha Levante],
+          [Fecha Entrega Documentos Despacho],
+          [Fecha Despacho],
+          [Fecha Recibo Docs Puerto],
+          [Fecha Entrega Apoyo Operativo],
+          [Fecha Entrega DD Facturacion],
+          [Fecha Devolucion Facturacion],
+          [Fecha Entrega DO por Devolucion Facturacion],
+          [Fecha Facturacion],
+          [Fecha Solicitud Anticipo],
+          [Fecha Recibo Anticipo],
+          [Observaciones Seguimiento],
+          [Observaciones Bitacora],
+          [Observaciones Cliente],
+          [Descripcion Mercancia],
+            Deposito,
+            [Deposito Zona Franca],
+            [Numero Parcial],
+            Naviera,
+            Buque,
+            [BL Liberado],
+            Contenedores,
+            nombreEstado
+          ) (".$result.")";
+        $stmt = sqlsrv_prepare($connMssql, $InsertSQL, );
+        if (sqlsrv_execute($stmt) === false) {
+
+            die(print_r(sqlsrv_errors(), true));
+        }
+    
+
+
+}
+function vaciarTableTRK() {
+    $connMSSQL = connMSSQL(entorno); 
+    $options = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
+    $params = array();
+    $SQL = "TRUNCATE TABLE [BotAbc].[dbo].[v_seguimientooperativo] ";
+    $stmt = sqlsrv_query($connMSSQL, $SQL, $params, $options);
+}
 function CopyHistorico()
 {
     $FunctionsMySQL = new FunctionsMySQL();

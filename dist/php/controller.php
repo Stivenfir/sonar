@@ -63,6 +63,9 @@ if (isset($argv[0]) && isset($argv[1])) {
         case 'CopyHistorico':
             CopyHistorico();
             break;
+            case 'InsertTRKSeguimiento':
+                InsertTRKSeguimiento();
+                break;
         case 'CalcularDatosAdicionales':
             CalcularDatosAdicionales();
             break;
