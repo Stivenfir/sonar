@@ -205,9 +205,9 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AR' . $Fila, $row['OrdenNacbuque']);
         $sheet->getActiveSheet()->setCellValue('AS' . $Fila, $row['OrdenNacmblLiberado']);
         $sheet->getActiveSheet()->setCellValue('AT' . $Fila, $row['Contenedores']);
-        $sheet->getActiveSheet()->setCellValue('AT' . $Fila, $row['NoRadicadoProrroga']);
-        $sheet->getActiveSheet()->setCellValue('AT' . $Fila, $row['FechaRadicadoProrroga']);
-        $sheet->getActiveSheet()->setCellValue('AT' . $Fila, $row['CantContenedores']);
+        $sheet->getActiveSheet()->setCellValue('AU' . $Fila, $row['NoRadicadoProrroga']);
+        $sheet->getActiveSheet()->setCellValue('AV' . $Fila, $row['FechaRadicadoProrroga']);
+        $sheet->getActiveSheet()->setCellValue('AW' . $Fila, $row['CantContenedores']);
     }
 
     $dataArray = array();
