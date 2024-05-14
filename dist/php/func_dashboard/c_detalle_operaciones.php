@@ -627,7 +627,7 @@ function SelectDO($connMysql)
         if (strlen($row['ParcialNumero']) > 0) {
             $DataHtml .= '<div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold">Número Parcial</h6>
-<h6 class="card-user_occupation">' . ConvertFechaHour($row['ParcialNumero']) . '</h6>
+<h6 class="card-user_occupation">' .$row['ParcialNumero'] . '</h6>
 </div>';
         }
 
