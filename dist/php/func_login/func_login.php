@@ -34,7 +34,7 @@ function LoginFunc()
     } else if ($usuarioLogin == 'jfontecha' && $UsuarioPassword == 'Sonarjfontecha2022') {
         $RolID     = 1;
         $UsuarioID = 37897;
-    } else if ($usuarioLogin == 'consulta' && $UsuarioPassword == 'consulta') {
+    } else if ($usuarioLogin == 'consulta' && $UsuarioPassword == 'SonarConsulta2706*') {
         $RolID     = 1;
         $UsuarioID = 9999;
     } else {
