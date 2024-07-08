@@ -5,12 +5,12 @@ function KpisGenerales($connMysql)
     $FiltroActivo = FiltroActivo('RemoveTablero');
     $ParamFecha = ReturnRangoKpi();
     if ($_POST['TipoBtnFiltroKpi'] == 'Clientes') {
-        echo $SQL = "SELECT COUNT(*) AS RecuentoFilas , ClienteID, Cliente FROM tabc_hist_levantes WHERE  $FiltroActivo $ParamFecha  GROUP BY ClienteID HAVING COUNT(*) > 0 ORDER BY RecuentoFilas DESC  ";
+         $SQL = "SELECT COUNT(*) AS RecuentoFilas , ClienteID, Cliente FROM tabc_hist_levantes WHERE  $FiltroActivo $ParamFecha  GROUP BY ClienteID HAVING COUNT(*) > 0 ORDER BY RecuentoFilas DESC  ";
         $CampoFilter = 'ClienteID';
         $NombreUser = 'Cliente';
         $TituloCard = 'Cliente';
     } else {
-       echo $SQL = "SELECT COUNT(*) AS RecuentoFilas , EjecutivoID,Ejecutivo FROM tabc_hist_levantes WHERE   $FiltroActivo $ParamFecha  GROUP BY EjecutivoID HAVING COUNT(*) > 0 ORDER BY RecuentoFilas DESC ";
+        $SQL = "SELECT COUNT(*) AS RecuentoFilas , EjecutivoID,Ejecutivo FROM tabc_hist_levantes WHERE   $FiltroActivo $ParamFecha  GROUP BY EjecutivoID HAVING COUNT(*) > 0 ORDER BY RecuentoFilas DESC ";
         $CampoFilter = 'EjecutivoID';
         $NombreUser = 'Ejecutivo';
         $TituloCard = 'Coordinador';
