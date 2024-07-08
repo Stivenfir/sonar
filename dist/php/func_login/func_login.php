@@ -39,7 +39,7 @@ function LoginFunc()
         $UsuarioID = 9999;
     } else {
 
-        $ArrayUsuariosAduana = array('Taniat', 'jsandoval', 'jnieves', 'dtorres', 'vsanchez', 'ivanb', 'bcruz', 'lleon', 'kcaraballo', 'avera', 'wceron', 'lpadilla', 'gamen', 'kcarvajal', 'mcayola', 'msepulveda');
+        $ArrayUsuariosAduana = array('Taniat', 'jsandoval',  'dtorres', 'vsanchez', 'ivanb', 'bcruz', 'lleon', 'avera', 'wceron', 'lpadilla', 'gamen', 'kcarvajal', 'mcayola', 'msepulveda');
         $ArrayAduanaUser = array(
             'Taniat' => array('Barranquilla'),
             'jnieves' => array('Barranquilla', 'Cartagena', 'Santa Marta'),
@@ -64,7 +64,7 @@ function LoginFunc()
         $salida            = exec('"' . $ExePass . '"  ' . $Parametros . '');
         $row               = explode(',', $salida);
         $CantidadVariables = count($row);
-
+       
         if ($CantidadVariables == 1) {
             $RolID = $row[0];
         } else {
