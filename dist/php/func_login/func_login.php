@@ -64,12 +64,17 @@ function LoginFunc()
         $salida            = exec('"' . $ExePass . '"  ' . $Parametros . '');
         $row               = explode(',', $salida);
         $CantidadVariables = count($row);
-       
+
         if ($CantidadVariables == 1) {
             $RolID = $row[0];
         } else {
             $RolID     = $row[0];
             $UsuarioID = $row[1];
+            $ArrayUsuariosConfig= array('drivadeneira', 'esarmiento');
+            if (in_array(strtolower($usuarioLogin), $ArrayUsuariosConfig)) {
+                $RolID = 4;
+            }
+
             if (in_array(strtolower($usuarioLogin), $ArrayUsuariosAduana)) {
                 foreach ($ArrayAduanaUser[$usuarioLogin] as $aduanaRow) {
 
