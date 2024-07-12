@@ -208,6 +208,8 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AU' . $Fila, $row['NoRadicadoProrroga']);
         $sheet->getActiveSheet()->setCellValue('AV' . $Fila, $row['FechaRadicadoProrroga']);
         $sheet->getActiveSheet()->setCellValue('AW' . $Fila, $row['CantContenedores']);
+        $sheet->getActiveSheet()->setCellValue('AX' . $Fila, $row['ContactoCliente']);
+        $sheet->getActiveSheet()->setCellValue('AY' . $Fila, $row['OrdenCompra']);
     }
 
     $dataArray = array();
