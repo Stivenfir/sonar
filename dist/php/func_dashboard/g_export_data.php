@@ -210,6 +210,7 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AW' . $Fila, $row['CantContenedores']);
         $sheet->getActiveSheet()->setCellValue('AX' . $Fila, $row['ContactoCliente']);
         $sheet->getActiveSheet()->setCellValue('AY' . $Fila, $row['OrdenCompra']);
+        $sheet->getActiveSheet()->setCellValue('AZ' . $Fila, $row['DeliveryNote']);
     }
 
     $dataArray = array();
