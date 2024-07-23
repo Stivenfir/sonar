@@ -260,7 +260,7 @@ function TraductorTerminalDeposito($connMysql, $id_trk, $tipo = 'TP')
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($stmt->rowCount() > 0) {
-        return $row['Nombre'];
+        return  $row['id_trk']. ' - '.$row['Nombre'];
     } else {
         return 'NO IDENTIFICADO';
     }
