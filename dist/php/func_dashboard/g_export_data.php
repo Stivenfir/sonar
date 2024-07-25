@@ -212,9 +212,9 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AY' . $Fila, $row['OrdenCompra']);
         $sheet->getActiveSheet()->setCellValue('AZ' . $Fila, $row['DeliveryNote']);
 
-        $sheet->getActiveSheet()->setCellValue('AX' . $Fila, $row['DocImpoFechaDocAnticipada']);
-        $sheet->getActiveSheet()->setCellValue('AY' . $Fila, $row['DocImpoDocRecibidosAnt']);
-        $sheet->getActiveSheet()->setCellValue('AZ' . $Fila, $row['DocImpoDocPendAnt']);
+        $sheet->getActiveSheet()->setCellValue('BA' . $Fila, $row['DocImpoFechaDocAnticipada']);
+        $sheet->getActiveSheet()->setCellValue('BB' . $Fila, $row['DocImpoDocRecibidosAnt']);
+        $sheet->getActiveSheet()->setCellValue('BC' . $Fila, $row['DocImpoDocPendAnt']);
     }
 
     $dataArray = array();
