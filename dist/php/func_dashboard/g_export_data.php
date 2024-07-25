@@ -211,6 +211,10 @@ function ExportarFile($connMysql)
         $sheet->getActiveSheet()->setCellValue('AX' . $Fila, $row['ContactoCliente']);
         $sheet->getActiveSheet()->setCellValue('AY' . $Fila, $row['OrdenCompra']);
         $sheet->getActiveSheet()->setCellValue('AZ' . $Fila, $row['DeliveryNote']);
+
+        $sheet->getActiveSheet()->setCellValue('AX' . $Fila, $row['DocImpoFechaDocAnticipada']);
+        $sheet->getActiveSheet()->setCellValue('AY' . $Fila, $row['DocImpoDocRecibidosAnt']);
+        $sheet->getActiveSheet()->setCellValue('AZ' . $Fila, $row['DocImpoDocPendAnt']);
     }
 
     $dataArray = array();
