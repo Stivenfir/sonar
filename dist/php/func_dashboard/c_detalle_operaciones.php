@@ -799,7 +799,7 @@ function ActualizarDOS($connMysql)
                 $idConverted = implode(',', $_SESSION['SessionIDS']);
 
                 $DataUpatde = EjecutarProcedimientoTRK($connMysql, $CadenaUpdate);
-                print_r($DataUpatde);
+                // print_r($DataUpatde);
                 if ($DataUpatde['Result'] == 'OK') {
                     $ResultadosSQL       = SQLUpdaterData($connMysql, $CadenaUpdate, $ID);
                     $data['idConverted'] = $idConverted;
