@@ -172,7 +172,6 @@ function DetalleDO($connMysql)
                 $icon       = '<span class="ti-alert text-danger"></span>';
                 $ColorLetra = '#EB0101';
                 $ColorFecha = 'Fecha-danger';
-
             } else if ($row['RangoEstado'] == 'De0a4') {
                 $icon = '<span class="ti-time text-warning"></span>';
 
@@ -180,7 +179,6 @@ function DetalleDO($connMysql)
             } else {
                 $icon       = '<span class="ti-check-box text-success"></span>';
                 $ColorFecha = 'Fecha-success';
-
             }
             $DiasEta   = CalcularDias(ConvertFecha($row['DocImpoFechaETA']), $DiaHoy);
             $DiasMainf = CalcularDias(ConvertFecha($row['FechaManifiesto']), $DiaHoy);
@@ -365,8 +363,8 @@ function DetalleDO($connMysql)
                 ' . $ValuesRow . '
             </tr>';
                         break;
-
-                }}
+                }
+            }
         }
 
         $html .= '</tbody>
@@ -463,67 +461,77 @@ function SelectDO($connMysql)
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha ETA</h6>
 <h6 class="card-user_occupation" id="FechaManifiestoText">' . ConvertFechaHour($row['DocImpoFechaETA']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['NumeroManifiesto']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Número Manifiesto</h6>
 <h6 class="card-user_occupation" id="NumeroManifiestoText">' . $row['NumeroManifiesto'] . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaManifiesto']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Manifiesto</h6>
 <h6 class="card-user_occupation" id="FechaManifiestoText">' . ConvertFechaHour($row['FechaManifiesto']) . '</h6>
-</div>';}
+</div>';
+        }
         if (strlen($row['FechaFormulario']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Formulario  (FFMM) </h6>
 <h6 class="card-user_occupation" id="FechaFormularioText">' . ConvertFechaHour($row['FechaFormulario']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaConsultaInventario']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Consulta Inventario</h6>
 <h6 class="card-user_occupation" id="FechaConsultaInventarioText">' . ConvertFechaHour($row['FechaConsultaInventario']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaReciboDocumentos']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Recibo Docs DO</h6>
 <h6 class="card-user_occupation" >' . ConvertFechaHour($row['FechaReciboDocumentos']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaReciboDocsPuerto']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Recibo Docs Puerto</h6>
 <h6 class="card-user_occupation">' . ConvertFechaHour($row['FechaReciboDocsPuerto']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaReciboDocs']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Recibo Docs Nac</h6>
 <h6 class="card-user_occupation">' . ConvertFechaHour($row['FechaReciboDocs']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['OrdenNacID']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Nacionalización</h6>
 <h6 class="card-user_occupation" id="OrdenNacID">' . $row['OrdenNacID'] . '</h6>
-</div>';}
+</div>';
+        }
         if (strlen($row['TipoNacionalizacion']) > 0) {
             $DataHtml .= '   <div class="col-xl-6 mb-2">
 <h6 title="Tipo Nacionalización" class="text-primaryBold card-user_name">Tipo  Nacionalización</h6>
 <h6 class="card-user_occupation" id="TipoNacionalizacion">' . $row['TipoNacionalizacion'] . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaNacionalizacion']) > 0) {
             $DataHtml .= '<div class="col-xl-6 mb-2">
@@ -557,7 +565,8 @@ function SelectDO($connMysql)
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Entrega docs Despacho </h6>
 <h6 class="card-user_occupation" id="FechaEntregaDocumentosDespachoText">' . ConvertFechaHour($row['FechaEntregaDocumentosDespacho']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaEntregaApoyoOperativo']) > 0) {
             $DataHtml .= '<div class="col-xl-6 mb-2">
@@ -571,7 +580,8 @@ function SelectDO($connMysql)
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Despacho </h6>
 <h6 class="card-user_occupation" id="FechaDespachoText">' . ConvertFechaHour($row['FechaDespacho']) . '</h6>
-</div>';}
+</div>';
+        }
 
         if (strlen($row['FechaEntrDoFact']) > 0) {
             $DataHtml .= '<div class="col-xl-6 mb-2">
@@ -599,13 +609,15 @@ function SelectDO($connMysql)
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Solicitud Anticipo</h6>
 <h6 class="card-user_occupation" id="FechaSolicitudAnticipo">' . ConvertFechaHour($row['FechaSolicitudAnticipo']) . '</h6>
-</div>';}
+</div>';
+        }
         if (strlen($row['FechaReciboAnticipo']) > 0) {
             $DataHtml .= '
 <div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold card-user_name">Fecha Recibo Anticipo</h6>
 <h6 class="card-user_occupation" id="FechaReciboAnticipo">' . ConvertFechaHour($row['FechaReciboAnticipo']) . '</h6>
-</div>';}
+</div>';
+        }
         if (strlen($row['Deposito']) > 0) {
             $DataHtml .= '<div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold">Depósito</h6>
@@ -627,7 +639,7 @@ function SelectDO($connMysql)
         if (strlen($row['ParcialNumero']) > 0) {
             $DataHtml .= '<div class="col-xl-6 mb-2">
 <h6 class="text-primaryBold">Número Parcial</h6>
-<h6 class="card-user_occupation">' .$row['ParcialNumero'] . '</h6>
+<h6 class="card-user_occupation">' . $row['ParcialNumero'] . '</h6>
 </div>';
         }
 
@@ -690,7 +702,6 @@ function SelectDO($connMysql)
     if ($_POST['DoSelected'] == 'yes') {
         $_SESSION['SessionIDSUnico'] = $_SESSION['SessionIDS'];
         unset($_SESSION['SessionIDS']);
-
     }
     return json_encode($data);
 }
@@ -713,10 +724,8 @@ function ValidateSessionDO($ID)
 function ActualizarDOS($connMysql)
 {
     if (isset($_SESSION['SessionIDS'])) {
-
     } else {
         $_SESSION['SessionIDS'] = $_SESSION['SessionIDSUnico'];
-
     }
     $DoSeleccionados = $_SESSION['SessionIDS'];
     if (count($DoSeleccionados) == 0) {
@@ -790,6 +799,7 @@ function ActualizarDOS($connMysql)
                 $idConverted = implode(',', $_SESSION['SessionIDS']);
 
                 $DataUpatde = EjecutarProcedimientoTRK($connMysql, $CadenaUpdate);
+                print_r($DataUpatde);
                 if ($DataUpatde['Result'] == 'OK') {
                     $ResultadosSQL       = SQLUpdaterData($connMysql, $CadenaUpdate, $ID);
                     $data['idConverted'] = $idConverted;
@@ -817,7 +827,6 @@ function ActualizarDOS($connMysql)
                 $data['Errores'] = 'No actualizó ningun campo';
                 $data['Success'] = false;
             }
-
         }
     }
 
@@ -1174,7 +1183,6 @@ function ValidacionDeFechas($connMysql, $arrayData, $ID)
         } else {
             return 0;
         }
-
     }
 }
 
@@ -1209,14 +1217,12 @@ function SQLUpdaterData($connMysql, $CadenaUpdate)
                 $Parametros .= "$CampoUpdate='$Value',";
                 break;
         }
-
     }
     $idConverted = implode(',', $_SESSION['SessionIDS']);
     $Parametros  = substr($Parametros, 0, -1);
     $UpdateSQL   = "UPDATE IMSeguimientoOperativo  SET $Parametros   WHERE LlaveUnicaDO IN ('$idConverted') ";
     $stmt        = $connMysql->prepare($UpdateSQL);
     $stmt->execute();
-
 }
 function EjecutarProcedimientoTRK($connMysql, $CadenaUpdate)
 {
@@ -1225,7 +1231,7 @@ function EjecutarProcedimientoTRK($connMysql, $CadenaUpdate)
 
     $connMSSQL = connMSSQL(4);
     $sqlTxt    = '';
-//print_r($CadenaUpdate);
+    //print_r($CadenaUpdate);
     foreach ($SessionIDS as $ID) {
         $DocImpoNoDocTransp                  = "Null";
         $FechaDespacho                       = "Null";
@@ -1348,7 +1354,6 @@ function EjecutarProcedimientoTRK($connMysql, $CadenaUpdate)
                     $FechaEntregaDoDevolucionFacturacion = ConvertFechaForInsert($row['Value']);
                     $FechaEntregaDoDevolucionFacturacion = "'$FechaEntregaDoDevolucionFacturacion'";
                     break;
-
             }
         }
         $Proceso          = 2;
@@ -1481,11 +1486,13 @@ function SelectoresDepTerminal($connMysql)
 
         foreach ($result as $row) {
             if ($TerminalSelected == $row['id_trk']) {
-                $SelectedTerminal = 'selected';} else {
+                $SelectedTerminal = 'selected';
+            } else {
                 $SelectedTerminal = '';
             }
             if ($DepositoSelected == $row['id_trk']) {
-                $SelectedDeposito = 'selected';} else {
+                $SelectedDeposito = 'selected';
+            } else {
                 $SelectedDeposito = '';
             }
 
@@ -1527,17 +1534,17 @@ function PeticionAPI($ID)
 
     CalcularData($param = "ID = $ID");
 
-//     $opciones = array(
-//         'http' => array(
-//             'method' => "GET",
-//             'header' => "Accept-language: en\r\n",
-//         ),
-//     );
+    //     $opciones = array(
+    //         'http' => array(
+    //             'method' => "GET",
+    //             'header' => "Accept-language: en\r\n",
+    //         ),
+    //     );
 
-//     $contexto = stream_context_create($opciones);
+    //     $contexto = stream_context_create($opciones);
 
-// // Abre el fichero usando las cabeceras HTTP establecidas arriba
-//     $Respuesta = file_get_contents('http://localhost/abc-so/dist/php/?APIV1=CalcularDatos&Token=pruebas&ID=' . $ID, false, $contexto);
+    // // Abre el fichero usando las cabeceras HTTP establecidas arriba
+    //     $Respuesta = file_get_contents('http://localhost/abc-so/dist/php/?APIV1=CalcularDatos&Token=pruebas&ID=' . $ID, false, $contexto);
 }
 
 function ConvertFechaForInsert($Fecha)
@@ -1551,9 +1558,7 @@ function ConvertFechaForInsert($Fecha)
             return '';
         } else {
             return date('d/m/Y H:i:s', strtotime($Fecha));
-
         }
-
     }
 }
 
@@ -1580,7 +1585,6 @@ function ValidarEjecucionTRK($connMSSQL, $DocImpoID, $OrdenNacID)
     } else {
         return false;
     }
-
 }
 
 function ActulizarEstadoSentencia($connMSSQL, $ID)
@@ -1593,5 +1597,4 @@ function ActulizarEstadoSentencia($connMSSQL, $ID)
     } else {
         return 1;
     }
-
 }
