@@ -70,7 +70,7 @@ function LoginFunc()
         } else {
             $RolID     = $row[0];
             $UsuarioID = $row[1];
-            $ArrayUsuariosConfig= array('drivadeneira', 'esarmiento');
+            $ArrayUsuariosConfig = array('drivadeneira', 'esarmiento');
             if (in_array(strtolower($usuarioLogin), $ArrayUsuariosConfig)) {
                 $RolID = 4;
             }
@@ -86,6 +86,7 @@ function LoginFunc()
             }
         }
     }
+
     if ($RolID == 1 || $RolID == 2 || $RolID == 3 || $RolID == 4 || $RolID == 9410) {
 
         $_SESSION['RolID']           = $RolID;
@@ -128,7 +129,7 @@ function LoginFunc()
     } else if ($RolID == 999) {
         $data['Error'] = 'Contraseña o Usuarios Incorrectas Verifique';
     } else {
-        $data['Error'] = 'Error en la integración con RpcTracking';
+        $data['Error'] = 'Errror en datos de acceso,validar vencimiento de clave y rol de tracking';
     }
     //echo $row['UsuarioPassword'];
 
