@@ -2,32 +2,11 @@
 
 function LoginFunc()
 {
-    // $data                        = array();
-    // $_SESSION['RolID']           = 3;
-    // $_SESSION['UserID']          = 16974;
-    // $_SESSION['UsuarioLogueado'] = 'bvillalobos';
-    // $_SESSION['RolName']         = 'Coordinador de cuenta';
-    // $_SESSION['CampoUser']       = 'EjecutivoID';
-
-    // switch ($_SESSION['RolID']) {
-
-    //     case '2':
-    //         $_SESSION['BtnDirector'] = 216;
-    //         break;
-    //     case '3':
-    //         $_SESSION['BtnJefeCuenta'] = 16974;
-    //         break;
-    //     case '4':
-    //         $_SESSION['BtnCoordinador'] = 16974;
-    //         break;
-
-    // }
-
-    // $data['Success'] = true;
-    // return json_encode($data);
-
-    $usuarioLogin    = htmlspecialchars($_POST['username']);
-    $UsuarioPassword = htmlspecialchars($_POST['password']);
+    $data          = ['Success' => false];
+    $RolID         = null;
+    $UsuarioID     = null;
+    $usuarioLogin    = htmlspecialchars(trim($_POST['username'] ?? ''));
+    $UsuarioPassword = htmlspecialchars(trim($_POST['password'] ?? ''));
     if ($usuarioLogin == 'root' && $UsuarioPassword == 'IBsmOL27000') {
         $RolID     = 1;
         $UsuarioID = 31056;
@@ -37,7 +16,7 @@ function LoginFunc()
     } else if ($usuarioLogin == 'consulta' && $UsuarioPassword == 'SonarConsulta2706*') {
         $RolID     = 1;
         $UsuarioID = 9999;
-    } else {
+    } else if ($usuarioLogin !== '' && $UsuarioPassword !== '') {
 
         $ArrayUsuariosAduana = array('Taniat', 'jsandoval',  'dtorres', 'vsanchez', 'ivanb', 'bcruz', 'lleon', 'avera', 'wceron', 'lpadilla', 'gamen', 'kcarvajal', 'mcayola', 'msepulveda');
         $ArrayAduanaUser = array(
@@ -75,7 +54,7 @@ function LoginFunc()
                 $RolID = 4;
             }
 
-            if (in_array(strtolower($usuarioLogin), $ArrayUsuariosAduana)) {
+            if (in_array(strtolower($usuarioLogin), $ArrayUsuariosAduana) && isset($ArrayAduanaUser[$usuarioLogin])) {
                 foreach ($ArrayAduanaUser[$usuarioLogin] as $aduanaRow) {
 
                     $aduanasSelect[] = "'$aduanaRow'";
@@ -85,6 +64,8 @@ function LoginFunc()
                 $RolID = 1;
             }
         }
+    } else {
+        $data['Error'] = 'Debe proporcionar usuario y contraseña';
     }
     if ($RolID == 1 || $RolID == 2 || $RolID == 3 || $RolID == 4 || $RolID == 9410) {
 
@@ -141,7 +122,7 @@ function RegistrarActividad($TipoActividad)
         $ArraySQL = array(
             'RolID'           => '',
             'UserID'          => '',
-            'UsuarioLogueado' => $_POST['usuarioLogin'],
+            'UsuarioLogueado' => $_POST['username'] ?? '',
             'TipoActividad'   => $TipoActividad,
         );
     } else {
