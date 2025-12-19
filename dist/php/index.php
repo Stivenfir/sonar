@@ -373,7 +373,7 @@ function AnalizaData($data)
         $DiasLevante           = CalcularDias($DiaHoy, ConvertFechaApi($data['DeclImpoFechaLevante']));
 
         if ($DiasNac <= 0 && $DiasManifiesto <= 0 && $DiaConsultaInventario <= 0 && $DiasAceptacion <= 0 && $DiasLevante <= 0) {
-            if (strlen($data['FechaEntrDoFact']) == 0 && strlen($data['FechaDespacho']) == 0) {
+            if (strlen($data['FechaDespacho']) == 0) {
                 $DiasParaRango = CalcularDias(ConvertFechaApi($data['DeclImpoFechaLevante']), $DiaHoy);
                 //DetectarRangoDias($DiasParaRango) . '|' . $DiasParaRango . '|' . $data['DeclImpoFechaLevante'] . '<br>';
                 $RangoDias = DetectarRangoDias($DiasParaRango);
@@ -383,12 +383,7 @@ function AnalizaData($data)
                 if (strlen($data['FechaEntregaApoyoOperativo']) > 0) {
                     return array('EstadoCalculado' => 'ConLevanteSinDespachoSinGenerarFact', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
                 }
-                if (strlen($data['FechaEntrDoFact']) == 0) {
-                    return array('EstadoCalculado' => 'ConLevanteSinDespachoSinPasarFact', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
-                }
-                return array('EstadoCalculado' => 'ConLevanteSinDSP', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
-                // return array('EstadoCalculado' => 'ConLevanteSinDSP', 'DiasEstado' => $DiasParaRango,'ID'=>$data['ID']);
-                // return 'ConLevanteSinDSP';
+                return array('EstadoCalculado' => 'ConLevanteSinDespachoSinPasarFact', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
             }
         }
     }
