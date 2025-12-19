@@ -160,9 +160,9 @@ function Estado_Procesos($connMysql)
 
     $data['TablaEnprocesoAduana'] = GeneraTablaEstados("$FiltroActivo  AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaEtaVencidoSinDSP','PendienteActulizarManifiesto','AnticipadaConETAVencido','ArriboHoySinPasarADigitar','ArriboHoyEnDigitacion','EnElaboracionDIM','DIMVisadaSinAceptar','ConManifSinIngresoDeposito','EnEsperaIntruccionCliente','EnDepositoSinPasarDigitar','EnAceptacionSinLevante')", $connMysql);
 
-    $data['TablaEnDespachoPaFact'] = GeneraTablaEstados("$FiltroActivo  AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaConDSPSinFAC','ConLevanteSinDSP','ConDSPSinEnvioFact')", $connMysql);
+    $data['TablaEnDespachoPaFact'] = GeneraTablaEstados("$FiltroActivo  AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaConDSPSinFAC','ConLevanteSinDespachoSinPasarFact','ConLevanteSinDespachoSinGenerarFact','ConLevanteSinDSP','ConDSPSinEnvioFact')", $connMysql);
 
-    $data['TablaEnProcFact'] = GeneraTablaEstados("$FiltroActivo  AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaSinGeneraFAC','EnviadaFactSinFacturar','DevueltaPorContabilidad','DevolucionFacturacion')", $connMysql);
+    $data['TablaEnProcFact'] = GeneraTablaEstados("$FiltroActivo  AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaSinGeneraFAC','ConLevanteSinDespachoFacturado','EnviadaFactSinFacturar','DevueltaPorContabilidad','DevolucionFacturacion','PrefacturaGenerada','FacturaEnviadaCliente','FacturaAprobadaCliente')", $connMysql);
 
     $data['TablaOtrosProcesos'] = GeneraTablaEstados("$FiltroActivo  AND GrupoOperacion = 0 AND EstadoCalculado IN ('GastoPostSinFacturar','EntregaUrgenteTotal','FinalizacionEntregaUrgente','Eta1900','RevisarInfoParaDeterminarEstado')", $connMysql);
 
