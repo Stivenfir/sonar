@@ -100,8 +100,10 @@ function CalcularData($param)
                 'FechaEntrDoFact'                     => ReparaCadenas($row['FechaEntrDoFact']),
                 'FechaConsultaInventario'             => ReparaCadenas($row['FechaConsultaInventario']),
                 'DeclImpoFechaLevante'                => ReparaCadenas($row['DeclImpoFechaLevante']),
+                'FechaEntregaApoyoOperativo'          => ReparaCadenas($row['FechaEntregaApoyoOperativo']),
                 'FechaVisado'                         => ReparaCadenas($row['FechaVisado']),
                 'FechaDevolucionFacturacion'          => ReparaCadenas($row['FechaDevolucionFacturacion']),
+                'FechaFacturacion'                    => ReparaCadenas($row['FechaFacturacion']),
                 'FechaEntregaDoDevolucionFacturacion' => ReparaCadenas($row['FechaEntregaDoDevolucionFacturacion']),
                 'DocImpoFechaCrea'                    => ReparaCadenas($row['DocImpoFechaCrea']),
                 'Deposito'                            => $row['Deposito'],
@@ -362,7 +364,7 @@ function AnalizaData($data)
     }
     // Con Despacho sin Envio Facturacion
 
-    //  Con Levante Sin Despacho
+    //  Con Levante Sin Despacho con subestados
     if (strlen($data['FechaNacionalizacion']) > 0 && strlen($data['FechaManifiesto']) > 0 && strlen($data['FechaConsultaInventario']) > 0 && strlen($data['DeclImpoFechaAcept']) > 0 && strlen($data['DeclImpoFechaLevante']) > 0) {
         $DiasNac               = CalcularDias($DiaHoy, ConvertFechaApi($data['FechaNacionalizacion']));
         $DiasManifiesto        = CalcularDias($DiaHoy, ConvertFechaApi($data['FechaManifiesto']));
@@ -371,13 +373,17 @@ function AnalizaData($data)
         $DiasLevante           = CalcularDias($DiaHoy, ConvertFechaApi($data['DeclImpoFechaLevante']));
 
         if ($DiasNac <= 0 && $DiasManifiesto <= 0 && $DiaConsultaInventario <= 0 && $DiasAceptacion <= 0 && $DiasLevante <= 0) {
-            if (strlen($data['FechaEntrDoFact']) == 0 && strlen($data['FechaDespacho']) == 0) {
+            if (strlen($data['FechaDespacho']) == 0) {
                 $DiasParaRango = CalcularDias(ConvertFechaApi($data['DeclImpoFechaLevante']), $DiaHoy);
                 //DetectarRangoDias($DiasParaRango) . '|' . $DiasParaRango . '|' . $data['DeclImpoFechaLevante'] . '<br>';
                 $RangoDias = DetectarRangoDias($DiasParaRango);
-                return array('EstadoCalculado' => 'ConLevanteSinDSP', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
-                // return array('EstadoCalculado' => 'ConLevanteSinDSP', 'DiasEstado' => $DiasParaRango,'ID'=>$data['ID']);
-                // return 'ConLevanteSinDSP';
+                if (strlen($data['FechaFacturacion']) > 0) {
+                    return array('EstadoCalculado' => 'ConLevanteSinDespachoFacturado', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
+                }
+                if (strlen($data['FechaEntregaApoyoOperativo']) > 0) {
+                    return array('EstadoCalculado' => 'ConLevanteSinDespachoSinGenerarFact', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
+                }
+                return array('EstadoCalculado' => 'ConLevanteSinDespachoSinPasarFact', 'DiasEstado' => $DiasParaRango, 'ID' => $data['ID'], 'RangoEstado' => $RangoDias);
             }
         }
     }
@@ -679,18 +685,21 @@ function DetectarPosicion($estadoSearch)
         'EnDepositoSinPasarDigitar'       => 14,
         'EnAceptacionSinLevante'          => 15,
         'DtaConDSPSinFAC'                 => 16,
-        'ConLevanteSinDSP'                => 17,
-        'ConDSPSinEnvioFact'              => 18,
-        'DtaSinGeneraFAC'                 => 19,
-        'EnviadaFactSinFacturar'          => 20,
-        'DevueltaPorContabilidad'         => 21,
-        'DevolucionFacturacion'           => 22,
-        'GastoPostSinFacturar'            => 23,
-        'EntregaUrgenteTotal'             => 24,
-        'FinalizacionEntregaUrgente'      => 25,
-        'Eta1900'                         => 26,
-        'RevisarInfoParaDeterminarEstado' => 27,
-        ''                                => 28
+        'ConLevanteSinDespachoSinPasarFact' => 17,
+        'ConLevanteSinDespachoSinGenerarFact' => 18,
+        'ConLevanteSinDSP'                => 19,
+        'ConLevanteSinDespachoFacturado'  => 20,
+        'ConDSPSinEnvioFact'              => 21,
+        'DtaSinGeneraFAC'                 => 22,
+        'EnviadaFactSinFacturar'          => 23,
+        'DevueltaPorContabilidad'         => 24,
+        'DevolucionFacturacion'           => 25,
+        'GastoPostSinFacturar'            => 26,
+        'EntregaUrgenteTotal'             => 27,
+        'FinalizacionEntregaUrgente'      => 28,
+        'Eta1900'                         => 29,
+        'RevisarInfoParaDeterminarEstado' => 30,
+        ''                                => 31
     );
 
     return $DataArray[$estadoSearch];
