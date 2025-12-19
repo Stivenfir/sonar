@@ -51,13 +51,13 @@ function ExportarFile($connMysql)
                 $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaEtaVencidoSinDSP','PendienteActulizarManifiesto','AnticipadaConETAVencido','ArriboHoySinPasarADigitar','ArriboHoyEnDigitacion','EnElaboracionDIM','DIMVisadaSinAceptar','ConManifSinIngresoDeposito','EnEsperaIntruccionCliente','EnDepositoSinPasarDigitar','EnAceptacionSinLevante') ORDER BY DocImpoNoDO ASC ";
                 break;
             case 'Proceso de Despacho y Pasar a Facturar':
-                $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaConDSPSinFAC','ConLevanteSinDSP','ConDSPSinEnvioFact') ORDER BY DocImpoNoDO ASC";
+                $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaConDSPSinFAC','ConLevanteSinDespachoSinPasarFact','ConLevanteSinDespachoSinGenerarFact','ConLevanteSinDSP','ConDSPSinEnvioFact') ORDER BY DocImpoNoDO ASC";
                 break;
             case 'En proceso de Facturación':
-                $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaSinGeneraFAC','EnviadaFactSinFacturar','DevueltaPorContabilidad','DevolucionFacturacion' ORDER BY DocImpoNoDO ASC";
+                $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('DtaSinGeneraFAC','ConLevanteSinDespachoFacturado','EnviadaFactSinFacturar','DevueltaPorContabilidad','DevolucionFacturacion','PrefacturaGenerada','FacturaEnviadaCliente','FacturaAprobadaCliente') ORDER BY DocImpoNoDO ASC";
                 break;
             case 'Otros Procesos':
-                $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('GastoPostSinFacturar','EntregaUrgenteTotal','FinalizacionEntregaUrgente','Eta1900','RevisarInfoParaDeterminarEstado' ORDER BY DocImpoNoDO ASC";
+                $ParametroFiltro = "$FiltroActivo AND GrupoOperacion = 0 AND EstadoCalculado IN ('GastoPostSinFacturar','EntregaUrgenteTotal','FinalizacionEntregaUrgente','Eta1900','RevisarInfoParaDeterminarEstado') ORDER BY DocImpoNoDO ASC";
                 break;
             default:
                 # code...
